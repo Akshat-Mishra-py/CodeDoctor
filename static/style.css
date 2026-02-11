@@ -22,8 +22,8 @@
 
 @keyframes appear{
     0%{scale:0.8; opacity:0; translate: 0px 20px;}
-    50%{scale:1; opacity: 1; translate: 0 0;}
-    100%{scale:0.8; opacity:0; translate: 0px 20px;}
+    75%{scale:1; opacity: 1; translate: 0 0;}
+    /* 100%{scale:0.8; opacity:0; translate: 0px 20px;} */
 
 }
 @keyframes Fade-Out{
@@ -441,7 +441,28 @@ body {
     background: transparent;
     border: none;
 }
-
+.Fix-button {
+    background: var(--accent);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    box-shadow: var(--accent) 0px 0px 20px, var(--accent) 0px 0px 30px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, light,200;
+    border-radius: 20px;
+    font-size: 2rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.Fix-button:hover {
+    background: #9d50bb;
+    box-shadow: #9d50bb 0px 0px 20px,#9d50bb 0px 0px 30px;
+    transform: translateY(-2px);
+}
+.Fix-button:active {
+    transform: translateY(0);
+    box-shadow: #9d50bb 0px 0px 10px,#9d50bb 0px 0px 15px;
+}
 .token.comment {
     color: #6a9955;
 }
