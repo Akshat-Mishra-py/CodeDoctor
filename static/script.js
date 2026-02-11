@@ -73,21 +73,11 @@ const codeOutput = document.getElementById('code-output');
 const languageSelect = document.getElementById('language-select');
 const langBadge = document.getElementById('lang-badge');
 const copyBtn = document.getElementById('copy-btn');
-const codeDisplay = document.querySelector('.code-display');
 
 if (codeInput) {
     codeInput.addEventListener('input', function() {
         codeOutput.textContent = this.value;
         Prism.highlightElement(codeOutput);
-        // Sync scroll positions
-        codeDisplay.scrollTop = this.scrollTop;
-        codeDisplay.scrollLeft = this.scrollLeft;
-    });
-
-    // Sync scroll
-    codeInput.addEventListener('scroll', function() {
-        codeDisplay.scrollTop = this.scrollTop;
-        codeDisplay.scrollLeft = this.scrollLeft;
     });
 
     languageSelect.addEventListener('change', function() {

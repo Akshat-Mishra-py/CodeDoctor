@@ -6,17 +6,7 @@
     <title>Akshat Mishra | Portfolio </title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    
-    <!-- Prism.js for syntax highlighting -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -47,37 +37,49 @@
         <div class="code-viewer-container">
             <div class="code-viewer-header">
                 <h2>Code Viewer</h2>
-                <p>Paste your code for instant syntax highlighting</p>
+                <p>Paste your code for analysis</p>
             </div>
             
-            <div class="code-editor-wrapper">
-                <div class="editor-controls">
-                    <label for="language-select">Language</label>
-                    <select id="language-select" class="language-select">
-                        <option value="javascript">JavaScript</option>
-                        <option value="python">Python</option>
-                        <option value="java">Java</option>
-                        <option value="cpp">C++</option>
-                        <option value="csharp">C#</option>
-                        <option value="html">HTML</option>
-                        <option value="css">CSS</option>
-                        <option value="php">PHP</option>
-                        <option value="sql">SQL</option>
-                    </select>
-                    <span class="lang-badge" id="lang-badge">JavaScript</span>
-                    <button class="copy-btn" id="copy-btn">
-                        <i class="fas fa-copy"></i>
-                    </button>
+            <div class="code-viewer-wrapper">
+                <div class="code-input-area">
+                    <div class="input-header">
+                        <label for="language-select">Language</label>
+                        <select id="language-select" class="language-select">
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="java">Java</option>
+                            <option value="cpp">C++</option>
+                            <option value="csharp">C#</option>
+                            <option value="html">HTML</option>
+                            <option value="css">CSS</option>
+                            <option value="php">PHP</option>
+                            <option value="sql">SQL</option>
+                        </select>
+                    </div>
+                    <textarea id="code-input" class="code-textarea" placeholder="Paste your code here..."></textarea>
                 </div>
-                
-                <div class="code-editor">
+
+                <div class="code-display-area">
+                    <div class="display-header">
+                        <span class="lang-badge" id="lang-badge">JavaScript</span>
+                        <button class="copy-btn" id="copy-btn">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
                     <pre class="code-display"><code id="code-output" class="language-javascript"></code></pre>
-                    <textarea id="code-input" class="code-textarea" placeholder="Paste your code here..." spellcheck="false"></textarea>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
