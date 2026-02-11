@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akshat Mishra | Portfolio </title>
+    <title>Code Doctor</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -33,8 +33,9 @@
     </section>
 
     <!-- Code Viewer Section -->
-    <section class="code-viewer-section">
-        <div class="code-viewer-container">
+    <form action="/profile", method="POST">
+        <section class="code-viewer-section">
+            <div class="code-viewer-container">
             <div class="code-viewer-header">
                 <h2>Code Viewer</h2>
                 <p>Paste your code for analysis</p>
@@ -44,7 +45,7 @@
                 <div class="code-input-area">
                     <div class="input-header">
                         <label for="language-select">Language</label>
-                        <select id="language-select" class="language-select">
+                        <select name="language" id="language-select" class="language-select">
                             <option value="javascript">JavaScript</option>
                             <option value="python">Python</option>
                             <option value="java">Java</option>
@@ -56,9 +57,9 @@
                             <option value="sql">SQL</option>
                         </select>
                     </div>
-                    <textarea id="code-input" class="code-textarea" placeholder="Paste your code here..."></textarea>
+                    <textarea name="code" id="code-input" class="code-textarea" placeholder="Paste your code here..."></textarea>
                 </div>
-
+                
                 <div class="code-display-area">
                     <div class="display-header">
                         <span class="lang-badge" id="lang-badge">JavaScript</span>
@@ -70,11 +71,14 @@
                 </div>
             </div>
         </div>
-    </section>
+        </section>
+    </form> 
 
     <section>
-        <div class="repo-grid">
-            <Button class="Fix-button">Fix Code</Button>
+        <div class="fix-button-container">
+            <img id="loading" src="{{ url_for('static', filename='Loading.webp') }}" alt="Code Doctor"
+            style="display:none; width: 50px; height: 50px; filter: sepia(1);">
+            <Button class="Fix-button" id="fix-btn">Fix Code</Button>
         </div>
     </section>
     <!-- Prism.js for syntax highlighting -->

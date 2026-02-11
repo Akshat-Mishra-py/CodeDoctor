@@ -1,61 +1,3 @@
-
-const username = 'Akshat-Mishra-py';
-document.documentElement.setAttribute("data-theme", "dark")
-async function loadRepos() {
-    const grid = document.getElementById('repo-grid');
-    if (!grid) return;
-
-    // Check LocalStorage Cache
-    const cachedData = localStorage.getItem('gh_repos');
-    const cacheTime = localStorage.getItem('gh_repos_time');
-    const now = new Date().getTime();
-    if (cachedData && (now - cacheTime < 300000)) { 
-        return renderRepos(JSON.parse(cachedData));        
-    }
-
-    try {
-        const response = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
-        if (!response.ok) throw new Error('GitHub API limit reached');
-        
-        const repos = await response.json();
-        localStorage.setItem('gh_repos', JSON.stringify(repos));
-        localStorage.setItem('gh_repos_time', now.toString());
-        
-        renderRepos(repos);
-    } catch (error) {
-        console.error("Fetch failed:", error);
-    }
-}
-
-function renderRepos(repos) {
-    const grid = document.getElementById('repo-grid');
-    grid.innerHTML = repos.map((repo) => {
-        // Match CSS classes for special glow effects
-        let cardClass = "card";
-        if (repo.name.includes("Neural")) cardClass += " neural-card";
-        if (repo.name.includes("Donut")) cardClass += " donut-card";
-
-        // Unique image per repo using repo.id
-        return `
-            <div class="${cardClass}">
-                <div class="card-content">
-                    <h3>${repo.name}</h3>
-                    <p>${repo.description || 'Deep tech software project exploring complex logic and engineering.'}</p>
-                    <div class="card-footer">
-                        <span class="lang-tag">${repo.language || 'Code'}</span>
-                        <a href="${repo.html_url}" target="_blank" style="color: inherit; text-decoration: none; font-weight: bold;">
-                            View →
-                        </a>
-                    </div>
-                </div>
-            </div>
-        `;
-    }).join('');
-}
-
-// document.addEventListener('DOMContentLoaded',loadRepos());
-
-
 const toggle = document.getElementsByClassName('theme-toggle');
 function toggleTheme()  {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
@@ -116,5 +58,32 @@ if (codeInput) {
         }).catch(err => {
             console.error('Failed to copy:', err);
         });
+    });
+}
+
+const FixBtn = document.getElementById('fix-btn');
+if (FixBtn) {
+    FixBtn.addEventListener('click', async function() {
+        
+        const code = document.getElementById('code-input').value;
+        if (code.length === 0) {
+            alert('Please paste your code before clicking Fix Code!');
+            return;
+        }
+        const language = document.getElementById('language-select').value;
+        const loadingIndicator = document.getElementById('loading');
+        
+        const response = await fetch('/profile', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ code, language })
+        })
+        FixBtn.disabled = true;
+        loadingIndicator.style.display = 'block';
+        
+        const result = await response.json();
+        if (result.redirect_url) {
+            window.location.href =  result.redirect_url;
+        }
     });
 }

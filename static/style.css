@@ -441,6 +441,14 @@ body {
     background: transparent;
     border: none;
 }
+.fix-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 1rem;
+}
 .Fix-button {
     background: var(--accent);
     color: #fff;
@@ -462,6 +470,12 @@ body {
 .Fix-button:active {
     transform: translateY(0);
     box-shadow: #9d50bb 0px 0px 10px,#9d50bb 0px 0px 15px;
+}
+.Fix-button:disabled {
+    background: var(--border);
+    box-shadow: none;
+    cursor: progress;
+    opacity: 0.6;
 }
 .token.comment {
     color: #6a9955;
