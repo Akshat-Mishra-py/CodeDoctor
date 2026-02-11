@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ theme }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Doctor</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="glass-nav">
+        <div class="logo">Code<span>Doctor</span></div>
+        <div class="nav-items">
+            <button id="theme-toggle" class="theme-toggle"><i class="fas fa-sun"></i></button>
+            <a href="https://github.com/Akshat-Mishra-py" target="_blank" class="gh-link"><i class="fab fa-github"></i></a>
+        </div>
+    </nav>
+
+
+    <!-- Results: Cards + Read-only Diff Viewer -->
+    <div style="max-width:1200px;margin:24px auto;padding:0 20px;">
+        <div style="display:flex;gap:5rem;align-items:flex-start;flex-wrap:wrap;align-items: center;">
+            <!-- Left: Cards -->
+            <div style="flex:1 1 360px;min-width:320px;gap: 1rem;display:flex;flex-direction:column;margin: 5rem;">
+                <h2>Analysis</h2>
+                        <div class="card">
+                            <div class="card-header"><strong>Explainations </strong></div>
+                            <div class="card-body"><pre style="white-space:pre-wrap;margin:0;">{{ explaination }}</pre></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header"><strong>Improvements </strong></div>
+                            <div class="card-body"><pre style="white-space:pre-wrap;margin:0;">{{ improvements }}</pre></div>
+                        </div>
+            </div>
+
+            <!-- Right: Diff viewer -->
+            <div style="flex:2 1 600px;min-width:320px;">
+                <h2>Code Difference Viewer</h2>
+                <div class="diff-container" style="display:flex;border:1px solid #ddd;border-radius:6px;overflow:hidden;">
+                    <div style="flex:1;padding:12px;background:#111;color:#fff;min-width:0;">
+                        <div style="font-weight:600;margin-bottom:8px;">Original ({{ language or 'code' }})</div>
+                        <pre style="white-space:pre-wrap;overflow:auto;height:420px;background:transparent;border-radius:4px;padding:8px;">{{ original_code }}</pre>
+                    </div>
+                    <div style="flex:1;padding:12px;background:#0b3f0b;color:#eaffea;min-width:0;">
+                        <div style="font-weight:600;margin-bottom:8px;">Corrected</div>
+                        <pre style="white-space:pre-wrap;overflow:auto;height:420px;background:transparent;border-radius:4px;padding:8px;">{{ corrected_code }}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; margin-top: 20px;">
+            <button href="/" class="Fix-button" id="back-btn">Back</button>
+        </div>
+    </div>
+
+
+    <!-- Prism.js for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-csharp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -3,7 +3,6 @@ function toggleTheme()  {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const newTheme = isDark ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
-    console.log(document.documentElement)
     // Switch icon
     toggle[0].innerHTML = !isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
 }
@@ -78,12 +77,19 @@ if (FixBtn) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ code, language })
         })
+        
         FixBtn.disabled = true;
         loadingIndicator.style.display = 'block';
-        
-        const result = await response.json();
-        if (result.redirect_url) {
-            window.location.href =  result.redirect_url;
-        }
+        const responseData = await response.json();
+        console.log(responseData.redirect_url);
+        if (responseData.redirect_url) {
+            window.location.href = responseData.redirect_url;}
+    });
+}
+
+const backBtn = document.getElementById('back-btn');
+if (backBtn) {
+    backBtn.addEventListener('click', function() {
+        window.location.href = '/';
     });
 }

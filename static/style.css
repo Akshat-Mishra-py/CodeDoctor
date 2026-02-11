@@ -441,9 +441,11 @@ body {
     background: transparent;
     border: none;
 }
+
 .fix-button-container {
     display: flex;
     flex-direction: column;
+    margin: 2rem 0;
     justify-content: center;
     align-items: center;
     margin-top: 2rem;
